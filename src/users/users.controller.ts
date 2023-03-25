@@ -14,13 +14,13 @@ import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
+  constructor(private readonly userService: UsersService){}
   // this is the root level of the url /users
   // Get /users
 
   @Get()
   getUsers(@Query('role') role:'sales' |'hr' ) {
-    const service = new UsersService()
-    return service.getUsers(role)
+    return this.userService.getUsers(role)
   }
 
   // Get users with a filtering method
@@ -38,7 +38,9 @@ export class UsersController {
   @Post()
   createUser(@Body() createUserDto:CreateUserDto){
     return {
-      name: createUserDto.name
+      name: createUserDto.name,
+      id: createUserDto.id,
+      role: createUserDto.role
     }
   }
   @Put(':id')

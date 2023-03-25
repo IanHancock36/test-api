@@ -1,5 +1,6 @@
 export class CreateUserDto {
+    id: number
     name: string 
-    jobTitle: string 
+    role: string 
 
 }
