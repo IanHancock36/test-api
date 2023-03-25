@@ -9,6 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -38,13 +39,16 @@ export class UsersController {
       name: createUserDto.name
     }
   }
-  // @Put(':id')
-  // updateUser() {
-  //   return {};
-  // }
+  @Put(':id')
+  updateUser(@Param('id')id:string, @Body() updateUserDto :UpdateUserDto) {
+    return {
+      id,
+      name: updateUserDto
+    };
+  }
   // // Delete /users/:id
-  // @Delete(':id')
-  // deleteUser() {
-  //   return {};
-  // }
+  @Delete(':id')
+  deleteUser() {
+    return {};
+  }
 }
